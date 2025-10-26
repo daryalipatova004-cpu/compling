@@ -4,7 +4,7 @@ def main():
     tokenizer = TextTokenizer()
 
     # Пример текста для токенизации
-    sample_text = "There is nobody to blame, but I would really love to... Why are you here today? \nget out!"
+    sample_text = "Hello, world! This is a test sentence. How are you today?"
 
     # Применяем все методы токенизации
     results = tokenizer.tokenize_all(sample_text)

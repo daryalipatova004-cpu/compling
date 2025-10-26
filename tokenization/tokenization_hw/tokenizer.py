@@ -39,7 +39,7 @@ class TextTokenizer:
             from nltk.tokenize import word_tokenize
             return word_tokenize(text)
         except:
-            print('Error occured')
+            print('Error: could not tokenize (nltk)')
             return None
 
     def spacy_tokenize(self, text):
@@ -58,7 +58,7 @@ class TextTokenizer:
             nlp = spacy.load("en_core_web_sm")
             return [t.text for t in nlp(text)]
         except:
-            print('Error occured')
+            print('Error: could not tokenize (spacy)')
             return None
 
     def tokenize_all(self, text):
@@ -74,6 +74,10 @@ class TextTokenizer:
         # Реализация вызова всех методов
         result = {}
         result['simple'] = self.simple_tokenize(text)
-        result['nltk'] = self.nltk_tokenize(text)
-        result['spacy'] = self.spacy_tokenize(text)
+        nltk_tokenization = self.nltk_tokenize(text)
+        if nltk_tokenization:
+            result['nltk'] = nltk_tokenization
+        spacy_tokenization = self.spacy_tokenize(text)
+        if spacy_tokenization:
+            result['spacy'] = spacy_tokenization
         return result
